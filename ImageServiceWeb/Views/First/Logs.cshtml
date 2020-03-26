@@ -1,0 +1,62 @@
+﻿@model ImageServiceWeb.Models.LogsModel
+@using ImageService.Logging.Modal;
+
+@{
+    ViewBag.Title = "Logs";
+}
+
+<div>
+    <h2>Filter Logs by Type </h2>
+    <p> Type: </p>
+    <input type="text" id="typeID" size="5" />
+    <input type="button" id="btnFilter" value="Submit" />
+</div>
+
+<h2>Logs</h2>
+<div>
+    <table id="tableLogs" class="table" style="width:auto">
+        <tr>
+            <th>Type</th>
+            <th>Message</th>
+        </tr>
+        @foreach (MessageRecievedEventArgs log in Model.Logs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => log.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => log.Message)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<script>
+    var btnFilter = document.getElementById("btnFilter");
+    btnFilter.onclick = function () {
+        //Getting the input
+        var input = document.getElementById("typeID");
+        var filter = input.value.toLowerCase();
+        table = document.getElementById("tableLogs");
+        tr = table.getElementsByTagName("tr");
+        //Moving on all the table rows
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                //Showing the tr in case of type equals to the text or in case of empty string
+                var td2 = td.innerHTML.toLowerCase();
+                if (td2.indexOf(filter) > -1 ) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+
+
+

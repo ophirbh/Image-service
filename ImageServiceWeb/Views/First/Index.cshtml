@@ -1,0 +1,57 @@
+﻿@model ImageServiceWeb.Models.MainModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table" style="width:auto">
+    <tr>
+        <td>The server is:</td>
+        @{string answer = "";
+            var reply = Model.Connected.ToString().ToLower();
+            switch (reply)
+            {
+                case "false":
+                    answer = " not connected";
+                    break;
+                case "true":
+                    answer = " connected";
+                    break;
+            }
+        }
+        <td>@answer</td>
+    </tr>
+    <tr>
+        <td>Number of photos:</td>
+        <td>@Model.PhotoNumber</td>
+    </tr>
+</table>
+<hr />
+<table class="table" style="width:auto">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Students[0].First)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Students[0].Second)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Students[0].ID)
+        </th>
+    </tr>
+    @foreach (var student in Model.Students)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => student.First)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => student.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => student.ID)
+        </td>
+    </tr>
+    }
+</table>

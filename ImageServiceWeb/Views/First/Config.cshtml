@@ -1,0 +1,51 @@
+﻿@model ImageServiceWeb.Models.ConfigModel
+
+@{
+    ViewBag.Title = "Config";
+}
+
+<h2>Config</h2>
+<div>
+    <table class="table" style="width:auto">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OutputDir)
+            </th>
+            <td style="padding-left: 25px;">@Model.OutputDir</td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SourceName)
+            </th>
+            <td style="padding-left: 25px;">@Model.SourceName</td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LogName)
+            </th>
+            <td style="padding-left: 25px;">@Model.LogName</td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThumbnailSize)
+            </th>
+            <td style="padding-left: 25px;">@Model.ThumbnailSize</td>
+        </tr>
+    </table>
+
+    <hr />
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Handlers)
+            </th>
+        </tr>
+        @foreach (string handler in Model.Handlers)
+        {
+        <tr>
+            <td> @Html.ActionLink(@handler, "SaveHandler", new { handlerToDelete = handler})</td>
+        </tr>
+        }
+    </table>
+</div>
+

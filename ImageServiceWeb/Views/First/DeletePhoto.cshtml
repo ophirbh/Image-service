@@ -1,0 +1,16 @@
+﻿@model ImageServiceWeb.Models.PhotosModel
+
+@{
+    ViewBag.Title = "DeletePhoto";
+}
+
+<h2 style="color:red;">Photo deletion confirmation</h2>
+<h3>Are you sure you want to delete this photo?</h3>
+<h4>Name: @Model.Name</h4>
+<h4>Date: @Model.Month/@Model.Year</h4>
+<br />
+<img src="@Url.Content(Model.RelativeThumbnailPath)">
+<br />
+<br />
+<p><a href="@Url.Action("Photos")" class="btn btn-info" role="button">Cancel</a> <a href="@Url.Action("PhotoDeletionConfirmed", new { thumbPhotoRelPath = Model.RelativeThumbnailPath})" class="btn btn-danger" role="button">Delete Photo</a></p>
+

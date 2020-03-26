@@ -1,0 +1,28 @@
+﻿@model ImageServiceWeb.Models.PhotosCollectionModel
+
+@{
+    ViewBag.Title = "Photos";
+}
+
+<h2>Photos</h2>
+
+@{foreach (var photo in Model.Photos)
+    {
+        
+        <div class="col-xs-18 col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="@Url.Content(@photo.RelativeThumbnailPath)" class="img-circle" width="242" height="200" alt="Image Unavailable">
+                <div class="caption">
+                    <h4>Name: @photo.Name</h4>
+                    <h6>Date: @photo.Month/@photo.Year</h6>
+                    <p><a href="@Url.Action("PhotoPresenter", new { photoRelPath = photo.RelativePath})" id="btnView" class="btn btn-info" role="button">View</a> <a href="@Url.Action("DeletePhoto", new { thumbPhotoRelPath = photo.RelativeThumbnailPath})" id="btnDelete" class="btn btn-danger" role="button">Delete</a></p>
+                </div>
+            </div>
+        </div>       
+    }
+}
+
+
+
+
+

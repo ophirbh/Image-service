@@ -1,0 +1,11 @@
+﻿@model ImageServiceWeb.Models.PhotosModel
+@{
+    ViewBag.Title = "PhotoPresenter";
+}
+
+<h2>PhotoPresenter</h2>
+<h4>Name: @Model.Name</h4>
+<h4>Date: @Model.Month/@Model.Year</h4>
+<p><a href="@Url.Action("DeletePhoto", new { thumbPhotoRelPath = Model.RelativeThumbnailPath})" id="btnDelete" class="btn btn-danger" role="button">Delete</a></p>
+
+<img src="@Url.Content(Model.RelativePath)">
